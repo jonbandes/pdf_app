@@ -18,7 +18,7 @@ y_membret = 765
 
 data_json = {
 "LUGAR": "VENEZUELA",
-"FECHA DE ELABORACIÓN": datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
+"FECHA DE ELABORACIÓN": datetime.datetime.now().strftime("%d/%m/%Y"),
 "CÓDIGO CLIENTE": "FRANKRO22"
 }
 

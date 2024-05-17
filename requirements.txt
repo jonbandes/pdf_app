@@ -1,0 +1,7 @@
+fastapi==0.111.0
+reportlab==4.2.0
+requests==2.31.0
+python-dotenv
+pydantic-settings==2.2.1
+PyPDF2
+uvicorn==0.29.0

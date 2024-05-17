@@ -7,7 +7,7 @@ import requests
 from fastapi.responses import Response
 import json
 import os
-from utils.utils import * #get_last_position, is_image, 
+from utils.utils import * 
 new_request_cimg = os.environ.get("CC_URL_CIMG")
 new_request_cod = os.environ.get("CC_URL_COD")
 
@@ -23,9 +23,6 @@ def generate_pdf_generic_logic(api_key, idMember, idVerification):
     }
     try:
         response = requests.get(new_request_cod+'/v1/profile/validation/hook/detail', headers=headers, params=params)
-      #  response = requests.get(new_request_cod, headers=headers, params=params)
-        print(new_request_cod)
-        print(response)
         if response.status_code == 200:
             data_master = response.json()
         else:
@@ -104,11 +101,11 @@ def generate_pdf_generic_logic(api_key, idMember, idVerification):
                 c.setFont("Helvetica-Bold",12)
                 #si el valor del contenido es la url de una imagen, obviamos la escritura del texto en el PDF y apilamos en una lista para luego ser 
                 #insertada mas adelante
-                if type(value)!=bool and is_image(value):
+                if type(value)!=bool and is_file_type(value, 'image'):
                         datos[requirement_name] = value
                         # Convertir el diccionario a formato JSON
                         json_data = json.dumps(datos)
-                elif type(value)!=bool and is_pdf(value):
+                elif type(value)!=bool and is_file_type(value, 'pdf'):
                         pdf_data[requirement_name] = value
                 else:
                     c.drawString(x_position_defa + delta, y_position_line, f"{requirement_name.upper()}:")
@@ -133,7 +130,6 @@ def generate_pdf_generic_logic(api_key, idMember, idVerification):
     folder_name = "files"
     i=0
     for key, value in datos_u.items():
-        print(value)
         c.showPage()
         c.drawString(x_position_defa + delta, y_position_line, f"{value}")
         params = {
@@ -156,7 +152,6 @@ def generate_pdf_generic_logic(api_key, idMember, idVerification):
 
                 # Obtener la fecha y hora actual para usar como nombre de archivo
                 img_name = datetime.datetime.now().strftime("%Y%m%d%H%M%S") + str(i)
-                print(img_name)
                 # Construir la ruta completa del archivo
                 file_path = os.path.join(folder_name, img_name + ".jpg")
 
@@ -177,7 +172,6 @@ def generate_pdf_generic_logic(api_key, idMember, idVerification):
     if pdf_data:
         for key, value in pdf_data.items():
             # Guardar el PDF generado con Canvas
-            print(key,value)
             canvas_pdf_path = key + "_canvas.pdf"
             with open(canvas_pdf_path, "wb") as f:
                 f.write(pdf_bytes)

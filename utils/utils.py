@@ -1,7 +1,7 @@
 from reportlab.pdfbase import pdfmetrics
 from pathlib import Path
 from PyPDF2 import PdfReader, PdfWriter
-
+import datetime
 data_master=''
 # Define el tamaño y posición del contenido
 content_width =590
@@ -18,7 +18,7 @@ y_membret = 765
 
 data_json = {
 "LUGAR": "VENEZUELA",
-"FECHA DE ELABORACIÓN": "2024-05-10",
+"FECHA DE ELABORACIÓN": datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
 "CÓDIGO CLIENTE": "FRANKRO22"
 }
 

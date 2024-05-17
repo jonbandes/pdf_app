@@ -82,7 +82,6 @@ def draw_borders(canvas):
         content_width (float): The width of the content area.
         content_height (float): The height of the content area.
     """
-    print('Borders')
     # Draw the border of the content
     canvas.setStrokeColorRGB(0, 0, 0)  # Set line color to black
     canvas.setLineWidth(0.3)  # Set line width
@@ -115,33 +114,28 @@ def add_image(canvas, image_path, x, y, width, height):
         canvas.drawString(x + 5, y + 5, "Image Not Found")
         print(f"Error loading image: {e}")
 
-def is_image(file_path):
+def is_file_type(file_path, file_type):
     """
-    Checks if the given file path has an image extension.
+    Checks if the given file path has the specified file extension type.
 
     Args:
         file_path (str): The file path to check.
+        file_type (str): The type of file to check for ('image' or 'pdf').
 
     Returns:
-        bool: True if the file has an image extension, False otherwise.
+        bool: True if the file has the specified extension, False otherwise.
     """
     image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
+    pdf_extension = '.pdf'
     extension = Path(file_path).suffix.lower()
-    return extension in image_extensions
+    
+    if file_type == 'image':
+        return extension in image_extensions
+    elif file_type == 'pdf':
+        return extension == pdf_extension
+    else:
+        raise ValueError("Invalid file type specified. Use 'image' or 'pdf'.")
 
-def is_pdf(file_path):
-    """
-    Checks if the given file path has an image extension.
-
-    Args:
-        file_path (str): The file path to check.
-
-    Returns:
-        bool: True if the file has an image extension, False otherwise.
-    """
-    pdf_extension = '.pdf' #, '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
-    extension = Path(file_path).suffix.lower()
-    return extension == pdf_extension
 
 def merge_pdfs(output_pdf_path, pdf_list):
     pdf_writer = PdfWriter()

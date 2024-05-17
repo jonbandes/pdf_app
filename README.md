@@ -23,8 +23,8 @@ This is a FastAPI application that provides endpoints for generating PDF files a
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/jonbandes/pdf_app
+    cd pdf_app
     ```
 
 2. **Create a virtual environment:**
@@ -102,8 +102,8 @@ Esta es una aplicación FastAPI que proporciona endpoints para generar archivos 
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/jonbandes/pdf_app
+    cd pdf_app
     ```
 
 1. **Clonar el repositorio:**
